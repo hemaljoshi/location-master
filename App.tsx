@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import LocationController from './src/Components/LocationController';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Map from './src/Components/Map';
+import { GeoDataContextProvider } from './src/Context/geoDataContext';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <BrowserRouter>
+      <GeoDataContextProvider>
+        <Routes>
+          <Route path='/' element={<LocationController />} />
+          <Route path='/map' element={<Map />} />
+        </Routes>
+      </GeoDataContextProvider>
+    </BrowserRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
